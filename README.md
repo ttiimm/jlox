@@ -1,2 +1,2 @@
 # jlox
-A Java implementation of Crafting Interpreter's Lox language
+A Java implementation of Crafting Interpreter's Lox language.
