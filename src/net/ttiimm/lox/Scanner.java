@@ -89,7 +89,7 @@ public class Scanner {
                 } else if (match('*')) {
                     // A C-style comment goes until a matching */
                     // No support for nesting
-                    while ((peek() != '*' || peekNext() != '/') && !isAtEnd()) {
+                    while (!(peek() == '*' && peekNext() == '/') && !isAtEnd()) {
                         advance();
                     }
                     if (isAtEnd()) {
