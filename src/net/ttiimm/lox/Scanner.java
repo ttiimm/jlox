@@ -86,6 +86,18 @@ public class Scanner {
                     while (peek() != '\n' && !isAtEnd()) {
                         advance();
                     }
+                } else if (match('*')) {
+                    // A C-style comment goes until a matching */
+                    // No support for nesting
+                    while ((peek() != '*' || peekNext() != '/') && !isAtEnd()) {
+                        advance();
+                    }
+                    if (isAtEnd()) {
+                        Reporter.error(line, STR."Unterminated comment");
+                    } else {
+                        advance();
+                        advance();
+                    }
                 } else {
                     addToken(SLASH);
                 }
@@ -108,7 +120,7 @@ public class Scanner {
                 } else if (isAlpha(c)) {
                     identifier();
                 } else {
-                    Reporter.error(line, "Unexpected character.");
+                    Reporter.error(line, STR."Unexpected character. `\{c}`");
                 }
                 break;
         }
