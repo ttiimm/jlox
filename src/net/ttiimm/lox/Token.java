@@ -15,6 +15,10 @@ public class Token {
 
     @Override
     public String toString() {
-        return STR."\{type} \{lexeme} \{literal}";
+        var s = STR."\{type} \{lexeme}";
+        if (literal != null) {
+            s += " " + literal;
+        }
+        return s;
     }
 }
